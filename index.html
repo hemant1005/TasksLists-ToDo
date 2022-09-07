@@ -1,0 +1,220 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My ToDo List</title>
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="todolist.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <span class="navbar-brand navbartitle"
+        >Tasks <span style="color:plum">List</span></span
+      >
+    </nav>
+
+    
+    <div class="container-fluid">
+      <div class="row addbtnrow">
+        <div class="col-md-12 addbutton">
+          <i class="bi bi-plus-circle-fill plusicon" data-toggle="modal" data-target="#exampleModalCenter"></i> Add New Task
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Add New Task</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label for="modalinput">New Task:</label>
+            <input type="text" name="modalinput" id="modalinput" placeholder="Add Your New Task">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary"  data-dismiss="modal" onclick="Addtodiv()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="outerdiv">
+      <div class="innercard">
+        <h5>Trip To USA</h5>
+        <div class="checkboxes">
+          <input
+            id="t1" 
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt1">Visit NYC</span>
+          <br />
+          <input
+            id="t2"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt2">Visit Statue Of Liberty</span>
+        </div>
+      </div>
+
+      <div class="innercard">
+        <h5>My To Do list</h5>
+        <div class="checkboxes">
+          <input
+          id="t3"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt3">Go to the gym</span>
+          <br />
+          <input
+          id="t4"
+             type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt4">Do Cardio</span>
+        </div>
+      </div>
+
+      <div class="innercard">
+        <h5>Shows to Watch</h5>
+        <div class="checkboxes">
+          <input
+          id="t5"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt5">Game Of Thrones</span>
+          <br />
+          <input
+          id="t6"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt6">House Of Dragon</span>
+        </div>
+      </div>
+
+      <div class="innercard">
+        <h5>Study Routine</h5>
+        <div class="checkboxes">
+          <input
+          id="t7"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt7">Go to College</span>
+          <br />
+          <input
+          id="t8"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt8">Study at Home</span>
+        </div>
+      </div>
+
+      <div class="innercard">
+        <h5>Stocks To Invest In</h5>
+        <div class="checkboxes">
+          <input
+          id="t9"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt9">Tata Chemicals</span>
+          <br />
+          <input
+          id="t10"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt10">Hdfc Bank</span>
+        </div>
+      </div>
+
+      
+    </div>
+  </body>
+
+  <script>
+
+
+    var count = 10;
+
+
+    function toggleLineThrough(element) {
+      console.log("element;;;;;;;;;;;",element);
+      console.log("element id;;;;;;;;;;;",element.id);
+      if (element.checked) {
+        document.querySelector("#text"+element.id).style.textDecoration = "line-through";
+        document.querySelector("#text"+element.id).style.color = "grey";
+      } else {
+        document.querySelector("#text"+element.id).style.textDecoration = "none";
+        document.querySelector("#text"+element.id).style.color = "black";
+      }
+    }
+
+
+    function Addtodiv() {
+      document.getElementById("outerdiv").innerHTML += (`
+      <div class="innercard">
+        <h5>`+document.getElementById("modalinput").value+`</h5>
+        <div class="checkboxes">
+          <input
+          id="t`+(++count)+`"
+            type="checkbox"
+            onclick="toggleLineThrough(this)"
+            class="taskcheckbox"
+          /><span id="textt`+(count)+`">`+document.getElementById("modalinput").value+`</span>
+          <br />
+      </div>`)
+
+      document.getElementById("modalinput").value = "";
+    }
+  </script>
+
+
+
+
+
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+  ></script>
+</html>
